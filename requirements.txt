@@ -20,7 +20,7 @@ flake8-pep3101
 flake8-bugbear
 setuptools
 wheel
-nmk
+nmk-base
 Jinja2
 pytest-xdist
 pytest-cov
