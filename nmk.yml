@@ -1,6 +1,7 @@
 refs:
-    # Base+python plugins (+current one)
+    # Base+python+vscode plugins (+current one)
     - pip://nmk-python!plugin.yml
+    - pip://nmk-vscode!plugin.yml
     - src/nmk_github/plugin.yml
     - <workspace>/shared.yml
     - workspace:
