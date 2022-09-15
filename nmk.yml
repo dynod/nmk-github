@@ -18,5 +18,9 @@ config:
         - Jinja2
 
     # Extra setup data
-    pythonSetupCfgFiles:
-        - nmk.cfg
+    pythonSetupItems:
+        metadata:
+            description: Github plugin for nmk build system
+        options.package_data:
+                nmk_github: "*.yml"
+                nmk_github.templates: "*"

@@ -11,8 +11,7 @@ config:
     # Dictionary of build commands (per operating system) for github action
     githubCommands:
         ubuntu-latest: source loadme.sh nmk tests
-        # FIXME: wait for check_logs support with emojis on Windows
-        #windows-latest: ./loadme.bat nmk tests
+        windows-latest: ./loadme.bat nmk tests
 
 tasks:
     # Github action file generation
