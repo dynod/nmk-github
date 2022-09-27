@@ -8,10 +8,13 @@ config:
     # List of python versions to be tested
     githubPythonVersions: []
 
-    # Dictionary of build commands (per operating system) for github action
-    githubCommands:
-        ubuntu-latest: source loadme.sh nmk tests
-        windows-latest: ./loadme.bat nmk tests
+    # List of operating systems (build images) for github action
+    githubOSImages:
+        - ubuntu-latest
+        - windows-latest
+
+    # Build command for github action
+    githubCommand: source loadme.sh nmk tests
 
 tasks:
     # Github action file generation
@@ -24,5 +27,6 @@ tasks:
         if: ${githubPythonVersions}
         params:
             python_versions: ${githubPythonVersions}
-            commands: ${githubCommands}
+            command: ${githubCommand}
+            images: ${githubOSImages}
         builder: nmk_github.action.ActionFileBuilder

@@ -11,13 +11,12 @@ jobs:
         strategy:
             fail-fast: false
             matrix:
-                os:{% for os in commands.keys() %}
+                os:{% for os in images %}
                     - {{ os }}{% endfor %}
                 version:{% for version in pythonVersions %}
                     - "{{ version }}"{% endfor %}
-                include:{% for os in commands.keys() %}
-                    - os: {{ os }}
-                      command: {{ commands[os] }}{% endfor %}
+                command:
+                    - {{ command }}
         runs-on: ${{ '{{' }} matrix.os {{ '}}' }}
         steps:
             # Checkout, with all submodules
