@@ -9,7 +9,7 @@
     "python.linting.pylintEnabled": false,
     "python.linting.flake8Enabled": true,
     "python.linting.flake8Args": [
-        "--ignore=E501,B902,W503"
+        "--ignore=E203,E501,B902,W503"
     ],
     "python.formatting.provider": "black",
     "python.formatting.blackArgs": [
@@ -29,7 +29,10 @@
         "pyvenv",
         "sdist",
         "venv",
-        "loadme"
+        "loadme",
+        "dynod",
+        "nmk",
+        "pypi"
     ],
     "python.analysis.extraPaths": [
         "src"
@@ -40,5 +43,10 @@
     },
     "editor.formatOnSave": true,
     "task.allowAutomaticTasks": "on",
-    "terminal.integrated.defaultProfile.windows": "Git Bash"
+    "terminal.integrated.defaultProfile.windows": "Git Bash",
+    "cSpell.allowCompoundWords": true,
+    "cSpell.enableFiletypes": [
+        "yaml",
+        "python"
+    ]
 }

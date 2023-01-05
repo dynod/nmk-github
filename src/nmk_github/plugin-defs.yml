@@ -2,6 +2,7 @@
 refs:
     - python.yml    # Python path contribution
     - action.yml    # Action generation
+    - badges.yml    # Badges generation
 
 config:
     # Plugin version
