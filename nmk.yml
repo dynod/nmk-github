@@ -1,8 +1,9 @@
 refs:
     # Base+python+vscode plugins (+current one)
+    - src/nmk_github/plugin.yml
+    - pip://nmk-badges!plugin.yml
     - pip://nmk-python!plugin.yml
     - pip://nmk-vscode!plugin.yml
-    - src/nmk_github/plugin.yml
     - <workspace>/shared.yml
     - workspace:
         local: ../../../../shared
