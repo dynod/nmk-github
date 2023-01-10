@@ -6,7 +6,9 @@ config:
     githubActionTemplate: ${BASEDIR}/templates/build.yml
 
     # List of python versions to be tested
-    githubPythonVersions: []
+    githubPythonVersions: [] # (manual configuration)
+    githubDetectedPythonVersions: # (deduced configuration from python plugin, if any)
+        __resolver__: nmk_github.action.PythonVersionsResolver
 
     # List of operating systems (build images) for github action
     githubOSImages:
@@ -24,9 +26,9 @@ tasks:
         appendToDeps: setup
         input: ${githubActionTemplate}
         output: ${githubAction}
-        if: ${githubPythonVersions}
+        if: ${githubDetectedPythonVersions}
         params:
-            python_versions: ${githubPythonVersions}
+            python_versions: ${githubDetectedPythonVersions}
             command: ${githubCommand}
             images: ${githubOSImages}
         builder: nmk_github.action.ActionFileBuilder
