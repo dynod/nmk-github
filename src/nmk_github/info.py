@@ -5,7 +5,7 @@ from typing import Tuple
 from nmk.model.resolver import NmkStrConfigResolver
 from nmk.utils import run_with_logs
 
-REMOTE_PATTERN = re.compile("origin[\\t ]+git@github.com:([^/]+)/([^.]+).git[\\t ]+\\(fetch\\)")
+REMOTE_PATTERN = re.compile("origin[\\t ]+(?:(?:git@)|(?:https://))github.com[:/]([^/]+)/([^.]+)(?:.git)?[\\t ]+\\(fetch\\)")
 
 
 class GithubRemoteParser(NmkStrConfigResolver):
