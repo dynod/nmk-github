@@ -25,3 +25,7 @@ config:
         options.package_data:
                 nmk_github: "*.yml"
                 nmk_github.templates: "*"
+
+    # Github issues logged in nmk project
+    githubIssuesRepo: nmk
+    githubIssuesLabel: "plugin:github"

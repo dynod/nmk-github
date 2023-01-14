@@ -18,6 +18,14 @@ config:
     # Build command for github action
     githubCommand: source loadme.sh nmk tests
 
+    # Github user
+    githubUser:
+        __resolver__: nmk_github.info.GithubUserResolver
+
+    # Github repository
+    githubRepo:
+        __resolver__: nmk_github.info.GithubRepoResolver
+
 tasks:
     # Github action file generation
     gh.actions:

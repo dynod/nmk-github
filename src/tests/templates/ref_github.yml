@@ -8,3 +8,5 @@ refs:
 config:
     githubPythonVersions:
         - "3.8"
+
+    githubIssuesLabel: foo:bar
