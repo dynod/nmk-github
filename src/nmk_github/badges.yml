@@ -2,12 +2,15 @@ config:
     
     # License name configuration (default to Mozilla Public License)
     githubLicense: MPL
+
+    # User name on Github
+    githubUser: "<user>"
     
     # Badges configuration
     badges:
       - alt: "License: ${githubLicense}"
-        img: https://img.shields.io/github/license/dynod/${pythonPackage}
-        url: https://github.com/dynod/${pythonPackage}/blob/main/LICENSE
+        img: https://img.shields.io/github/license/${githubUser}/${pythonPackage}
+        url: https://github.com/${githubUser}/${pythonPackage}/blob/main/LICENSE
       - alt: Checks
-        img: https://img.shields.io/github/actions/workflow/status/dynod/${pythonPackage}/build.yml?branch=main&label=build%20%26%20u.t.
-        url: https://github.com/dynod/${pythonPackage}/actions?query=branch%3Amain
+        img: https://img.shields.io/github/actions/workflow/status/${githubUser}/${pythonPackage}/build.yml?branch=main&label=build%20%26%20u.t.
+        url: https://github.com/${githubUser}/${pythonPackage}/actions?query=branch%3Amain
