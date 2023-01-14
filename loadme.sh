@@ -85,6 +85,7 @@ if test -z "${VENV_ROOT}"; then
         MISSING_DEPS=0
         __checkSysDeps git "" "https://git-scm.com/downloads"
         __checkSysDeps python "" "https://www.python.org/downloads/"
+        git remote -v
         
         # Stop if something is missing
         if test ${MISSING_DEPS} -ne 0; then
