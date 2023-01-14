@@ -4,6 +4,7 @@ Github plugin for **`nmk`** build system
 <!-- NMK-BADGES-BEGIN -->
 [![License: MPL](https://img.shields.io/github/license/dynod/nmk-github)](https://github.com/dynod/nmk-github/blob/main/LICENSE)
 [![Checks](https://img.shields.io/github/actions/workflow/status/dynod/nmk-github/build.yml?branch=main&label=build%20%26%20u.t.)](https://github.com/dynod/nmk-github/actions?query=branch%3Amain)
+[![Issues](https://img.shields.io/github/issues-search/dynod/nmk?label=issues&query=is%3Aopen+is%3Aissue+label%3Aplugin%3Agithub)](https://github.com/dynod/nmk/issues?q=is%3Aopen+is%3Aissue+label%3Aplugin%3Agithub)
 [![Supported python versions](https://img.shields.io/badge/python-3.8%20--%203.11-blue)](https://www.python.org/)
 [![PyPI](https://img.shields.io/pypi/v/nmk-github)](https://pypi.org/project/nmk-github/)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
@@ -13,7 +14,10 @@ Github plugin for **`nmk`** build system
 
 This plugin adds support for Github features in an **`nmk`** project:
 * [Github workflow file](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions) generation
-* README badges generation (link to license + build action status; only if [**`nmk-badges`**](https://github.com/dynod/nmk-badges) plugin is also used)
+* README badges generation (if [**`nmk-badges`**](https://github.com/dynod/nmk-badges) plugin is also used):
+  * link to license
+  * build action status
+  * opened issues
 
 ## Usage
 
