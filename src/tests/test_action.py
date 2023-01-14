@@ -5,6 +5,11 @@ import nmk.utils as nmk_utils
 from nmk.tests.tester import NmkBaseTester
 
 
+@dataclass
+class FakeCompletedProcess:
+    stdout: str
+
+
 class TestGithubPlugin(NmkBaseTester):
     @property
     def templates_root(self) -> Path:
@@ -21,19 +26,21 @@ class TestGithubPlugin(NmkBaseTester):
         self.nmk(self.prepare_project("ref_github.yml"), extra_args=["--print", "githubIssuesLabelSuffix"])
         self.check_logs('Config dump: { "githubIssuesLabelSuffix": "+label%3Afoo%3Abar" }')
 
-    def test_user(self):
-        self.nmk(self.prepare_project("ref_github.yml"), extra_args=["--print", "githubUser"])
-        self.check_logs('Config dump: { "githubUser": "dynod" }')
+    def test_default_remote(self):
+        self.nmk(self.prepare_project("ref_github.yml"), extra_args=["--print", "githubUser", "--print", "githubRepo"])
+        self.check_logs('Config dump: { "githubUser": "dynod", "githubRepo": "nmk-github" }')
 
-    def test_repo(self):
-        self.nmk(self.prepare_project("ref_github.yml"), extra_args=["--print", "githubRepo"])
-        self.check_logs('Config dump: { "githubRepo": "nmk-github" }')
+    def test_http_remote(self, monkeypatch):
+        monkeypatch.setattr(nmk_utils, "run_with_logs", lambda args: FakeCompletedProcess("origin	https://github.com/dynod/nmk-github (fetch)"))
+        self.nmk(self.prepare_project("ref_github.yml"), extra_args=["--print", "githubUser", "--print", "githubRepo"])
+        self.check_logs('Config dump: { "githubUser": "dynod", "githubRepo": "nmk-github" }')
 
-    def test_fake_git_remote(self, monkeypatch):
-        @dataclass
-        class FakeCompletedProcess:
-            stdout: str
+    def test_git_remote(self, monkeypatch):
+        monkeypatch.setattr(nmk_utils, "run_with_logs", lambda args: FakeCompletedProcess("origin	git@github.com:dynod/nmk-github.git (fetch)"))
+        self.nmk(self.prepare_project("ref_github.yml"), extra_args=["--print", "githubUser", "--print", "githubRepo"])
+        self.check_logs('Config dump: { "githubUser": "dynod", "githubRepo": "nmk-github" }')
 
+    def test_bad_remote(self, monkeypatch):
         # Fake git remote returned URL
         monkeypatch.setattr(nmk_utils, "run_with_logs", lambda args: FakeCompletedProcess("foo"))
         self.nmk(
