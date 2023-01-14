@@ -23,10 +23,14 @@ class TestGithubPlugin(NmkBaseTester):
         self.nmk(self.prepare_project("ref_github.yml"), extra_args=["gh.actions"])
         assert self.build_file.is_file()
         with self.build_file.open() as f:
-            assert "# Publish to Pypi" not in f.read()
+            build_file = f.read()
+            assert "# Publish to Pypi" not in build_file
+            assert "# Upload coverage" not in build_file
 
     def test_action_with_python(self):
         self.nmk(self.prepare_project("ref_github_python.yml"), extra_args=["gh.actions"])
         assert self.build_file.is_file()
         with self.build_file.open() as f:
-            assert "# Publish to Pypi" in f.read()
+            build_file = f.read()
+            assert "# Publish to Pypi" in build_file
+            assert "# Upload coverage" in build_file

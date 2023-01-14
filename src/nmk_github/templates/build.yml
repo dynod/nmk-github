@@ -50,7 +50,7 @@ jobs:
                     out/
             - name: Build Failed!
               if: steps.build_n_tests.outcome == 'failure'
-              uses: actions/github-script@v3
+              uses: actions/github-script@v6.3.3
               with:
                 script: |
                     core.setFailed('Previous step failed')
@@ -62,6 +62,13 @@ jobs:
                     .nmk/nmk.log*
                     out/
                     !out/tests/
+{% if hasPythonPackage %}
+            # Upload coverage
+            - name: Upload coverage information
+              uses: codecov/codecov-action@v3.1.1
+              with:
+                files: {{coverageReport}}
+{% endif %}
 
     # Only on tags push
     publish:

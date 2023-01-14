@@ -4,9 +4,7 @@ refs:
         remote: github://dynod/nmk-base/main
         local: ../../../../../../base
     - pip://nmk-github!plugin.yml
+    - pip://nmk-python!plugin.yml
 
 config:
-    pythonSupportedVersions:
-        - "3.8"
-
     pythonPackage: foo
