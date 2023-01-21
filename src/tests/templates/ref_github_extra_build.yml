@@ -1,0 +1,29 @@
+refs:
+    - <base-plugin>/src/nmk_base/plugin.yml
+    - base-plugin:
+        remote: github://dynod/nmk-base/main
+        local: ../../../../../../base
+    - pip://nmk-github!plugin.yml
+
+config:
+    githubPythonVersions:
+        - "3.8"
+    emptyList: []
+
+    githubBuildSteps:
+        # __if__ included step
+        - name: Some extra step
+          uses: foo/bar@v1.2.3
+          with:
+            foo1: bar1
+          __if__: ${githubPythonVersions}
+        # __if__ filtered step
+        - name: Filtered step
+          __if__: ${emptyList}
+        # __unless__ included step
+        - name: Another extra step
+          uses: foo/bar@v2.3.4
+          __unless__: ${emptyList}
+        # __unless__ filtered step
+        - name: Another filtered step
+          __unless__: ${githubPythonVersions}

@@ -26,6 +26,17 @@ config:
     githubRepo:
         __resolver__: nmk_github.info.GithubRepoResolver
 
+    # Github build workflow steps contribution
+    # Expected to be a list of objects, that will be serialized in generated build.yml file
+    # Special keys:
+    # - __if__: generate this step if condition is met
+    # - __unless__: generate this step unless condition is met
+    githubBuildSteps: []
+
+    # Github publish workflow steps contribution
+    # See above
+    githubPublishSteps: []
+
 tasks:
     # Github action file generation
     gh.actions:
@@ -39,4 +50,6 @@ tasks:
             python_versions: ${githubDetectedPythonVersions}
             command: ${githubCommand}
             images: ${githubOSImages}
+            build_steps: ${githubBuildSteps}
+            publish_steps: ${githubPublishSteps}
         builder: nmk_github.action.ActionFileBuilder
