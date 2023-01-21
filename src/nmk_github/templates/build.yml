@@ -62,13 +62,10 @@ jobs:
                     .nmk/nmk.log*
                     out/
                     !out/tests/
-{% if hasPythonPackage %}
-            # Upload coverage
-            - name: Upload coverage information
-              uses: codecov/codecov-action@v3.1.1
-              with:
-                files: {{coverageReport}}
-{% endif %}
+{% for extraStep in buildExtraSteps %}
+            - {% for buildKey in extraStep %}{{ buildKey }}: {{ extraStep[buildKey] }}
+              {% endfor %}
+{% endfor %}
 
     # Only on tags push
     publish:
@@ -88,12 +85,7 @@ jobs:
                   python-version: "3.8"
             - name: Build
               run: source loadme.sh nmk build
-{% if hasPythonPackage %}
-            # Publish to Pypi
-            - name: Publish package
-              uses: pypa/gh-action-pypi-publish@v1.5.0
-              with:
-                  user: __token__
-                  password: ${{ '{{' }} secrets.pypi_password {{ '}}' }}
-                  packages_dir: out/artifacts
-{% endif %}
+{% for extraStep in publishExtraSteps %}
+            - {% for buildKey in extraStep %}{{ buildKey }}: {{ extraStep[buildKey] }}
+              {% endfor %}
+{% endfor %}

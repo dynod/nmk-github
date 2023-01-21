@@ -58,13 +58,34 @@ class TestGithubPlugin(NmkBaseTester):
         assert self.build_file.is_file()
         with self.build_file.open() as f:
             build_file = f.read()
-            assert "# Publish to Pypi" not in build_file
-            assert "# Upload coverage" not in build_file
+            assert '- "3.8"' in build_file
+            assert '- "3.11"' not in build_file
 
     def test_action_with_python(self):
         self.nmk(self.prepare_project("ref_github_python.yml"), extra_args=["gh.actions"])
         assert self.build_file.is_file()
         with self.build_file.open() as f:
             build_file = f.read()
-            assert "# Publish to Pypi" in build_file
-            assert "# Upload coverage" in build_file
+            assert '- "3.8"' in build_file
+            assert '- "3.11"' in build_file
+
+    def test_action_with_extra_steps(self):
+        self.nmk(self.prepare_project("ref_github_extra_build.yml"), extra_args=["gh.actions"])
+        assert self.build_file.is_file()
+        with self.build_file.open() as f:
+            build_file = f.read()
+
+            # included __if__ step
+            assert " name: Some extra step" in build_file
+            assert " uses: foo/bar@v1.2.3" in build_file
+            assert "__if__:" not in build_file
+
+            # filtered __if__ step
+            assert " name: Filtered step" not in build_file
+
+            # __unless__ included step
+            assert " name: Another extra step" in build_file
+            assert "__unless__:" not in build_file
+
+            # __unless__ filtered step
+            assert " name: Another filtered step" not in build_file
