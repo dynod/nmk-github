@@ -26,6 +26,9 @@ config:
     githubRepo:
         __resolver__: nmk_github.info.GithubRepoResolver
 
+    # Turn default project name to be the repository name
+    projectName: ${githubRepo}
+
     # Github build workflow steps contribution
     # Expected to be a list of objects, that will be serialized in generated build.yml file
     # Special keys:
