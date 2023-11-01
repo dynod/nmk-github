@@ -1,8 +1,9 @@
+import os
 import re
 import urllib.parse
 from typing import Tuple
 
-from nmk.model.resolver import NmkStrConfigResolver
+from nmk.model.resolver import NmkConfigResolver, NmkStrConfigResolver
 from nmk.utils import run_with_logs
 
 REMOTE_PATTERN = re.compile("origin[\\t ]+(?:(?:git@)|(?:https://))github.com[:/]([^/]+)/([^.]+)(?:.git)?[\\t ]+\\(fetch\\)")
@@ -35,3 +36,18 @@ class GithubIssuesLabelResolver(NmkStrConfigResolver):
         # Check for optional label
         label = self.model.config["githubIssuesLabel"].value
         return "+" + urllib.parse.quote(f"label:{label}") if len(label) else ""
+
+
+class GithubCIResolver(NmkConfigResolver):
+    """
+    Resolver for **gitEnableDirtyCheck** config item override
+    """
+
+    def get_type(self, name: str) -> object:
+        return bool
+
+    def get_value(self, name: str) -> str:
+        """
+        Resolution logic for **gitEnableDirtyCheck**: check if **CI** env var is defined
+        """
+        return "CI" in os.environ and (len(os.environ["CI"]) > 0)
