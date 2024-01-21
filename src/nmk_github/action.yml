@@ -40,10 +40,6 @@ config:
     # See above
     githubPublishSteps: []
 
-    # Enable dirty check if we're running in CI
-    gitEnableDirtyCheck:
-        __resolver__: nmk_github.info.GithubCIResolver
-
 tasks:
     # Github action file generation
     gh.actions:
