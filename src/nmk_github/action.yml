@@ -16,7 +16,7 @@ config:
         - windows-latest
 
     # Build command for github action
-    githubCommand: source loadme.sh nmk tests
+    githubCommand: ./buildenv.sh run nmk tests
 
     # Github user
     githubUser:
