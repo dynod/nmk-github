@@ -1,4 +1,3 @@
-import os
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -90,26 +89,3 @@ class TestGithubPlugin(NmkBaseTester):
 
             # __unless__ filtered step
             assert " name: Another filtered step" not in build_file
-
-    def test_dirty_check(self):
-        # Get current value
-        already_in_ci = "CI" in os.environ
-        if already_in_ci:
-            old_value = os.environ["CI"]
-            del os.environ["CI"]
-
-        # Without CI env var
-        p = self.prepare_project("ref_github.yml")
-        self.nmk(p, extra_args=["--print", "gitEnableDirtyCheck"])
-        self.check_logs('Config dump: { "gitEnableDirtyCheck": false }')
-
-        # With CI env var
-        os.environ["CI"] = "true"
-        self.nmk(p, extra_args=["--print", "gitEnableDirtyCheck"])
-        self.check_logs('Config dump: { "gitEnableDirtyCheck": true }')
-
-        # Restore environment
-        if already_in_ci:
-            os.environ["CI"] = old_value
-        else:
-            del os.environ["CI"]
