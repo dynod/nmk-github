@@ -84,7 +84,7 @@ jobs:
               with:
                   python-version: "3.8"
             - name: Build
-              run: source loadme.sh nmk build
+              run: ./buildenv.sh run nmk build
 {% for extraStep in publishExtraSteps %}
             - {% for buildKey in extraStep %}{{ buildKey }}: {{ extraStep[buildKey] }}
               {% endfor %}
