@@ -84,7 +84,7 @@ jobs:
               with:
                   python-version: "3.8"
             - name: Build
-              run: ./buildenv.sh run nmk build
+              run: ./buildenv.sh run nmk build git.dirty
 {% for extraStep in publishExtraSteps %}
             - {% for buildKey in extraStep %}{{ buildKey }}: {{ extraStep[buildKey] }}
               {% endfor %}
