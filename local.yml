@@ -1,0 +1,5 @@
+# Python plugin definition (for local reference when building/testing this project)
+refs:
+    - pip://nmk-base!plugin.yml
+    - python.yml
+    - src/nmk_github/plugin-defs.yml

@@ -1,4 +1,4 @@
 config:
     # Contribute to python path
     pythonPath:
-        - ${BASEDIR}/..
+        - ${BASEDIR}/src
