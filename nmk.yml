@@ -1,6 +1,6 @@
 refs:
     # Base+python+vscode plugins (+current one)
-    - src/nmk_github/plugin.yml
+    - local.yml
     - pip://nmk-badges!plugin.yml
     - pip://nmk-python!plugin.yml
     - pip://nmk-vscode!plugin.yml
