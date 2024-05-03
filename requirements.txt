@@ -17,7 +17,6 @@ flake8-string-format
 isort
 Jinja2
 nmk-base
-nmk-base
 nmk-vscode
 pep8-naming
 pytest-cov
