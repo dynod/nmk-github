@@ -1,6 +1,5 @@
 refs:
-    # Base+python+vscode plugins (+current one)
-    - local.yml
+    - src/nmk_github/plugin.yml
     - pip://nmk-badges!plugin.yml
     - pip://nmk-python!plugin.yml
     - pip://nmk-vscode!plugin.yml
@@ -8,6 +7,10 @@ refs:
     - workspace:
         local: ../../../../shared
         remote: github://dynod/workspace/main/shared
+
+# Python path for locally defined tasks
+path:
+    - src
 
 config:
     # Python package

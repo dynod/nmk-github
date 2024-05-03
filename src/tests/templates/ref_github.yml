@@ -1,5 +1,5 @@
 refs:
-    - ../../../../../local.yml
+    - pip://nmk-github!plugin.yml
 
 config:
     githubPythonVersions:
