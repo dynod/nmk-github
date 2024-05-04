@@ -10,6 +10,8 @@ config:
     githubIssuesLabel: ""
     githubIssuesLabelSuffix:
         __resolver__: nmk_github.info.GithubIssuesLabelResolver
+        params:
+            label: "${githubIssuesLabel}"
 
     # Badges configuration
     badges:

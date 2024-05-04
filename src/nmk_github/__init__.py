@@ -1,3 +1,7 @@
+"""
+Python module for **nmk-github** plugin code.
+"""
+
 from configparser import ConfigParser
 from pathlib import Path
 
@@ -19,5 +23,15 @@ except DistributionNotFound:  # pragma: no cover
 
 
 class NmkGithubVersionResolver(VersionResolver):
+    """
+    Version resolver for **${nmkGithubPluginVersion}**
+    """
+
     def get_version(self) -> str:
+        """
+        Module version accessor
+
+        :return: current module version
+        """
+
         return __version__

@@ -15,4 +15,4 @@ config:
 
     # Plugin help links dict
     nmkPluginsDocs:
-        nmk-github: https://github.com/dynod/nmk/wiki/nmk-github-plugin
+        nmk-github: https://nmk-github.readthedocs.io/

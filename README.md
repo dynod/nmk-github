@@ -10,6 +10,7 @@ Github plugin for **`nmk`** build system
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![Flake8 analysis result](https://img.shields.io/badge/flake8-0-green)](https://flake8.pycqa.org/)
 [![Code coverage](https://img.shields.io/codecov/c/github/dynod/nmk-github)](https://app.codecov.io/gh/dynod/nmk-github)
+[![Documentation Status](https://readthedocs.org/projects/nmk-github/badge/?version=stable)](https://nmk-github.readthedocs.io/)
 <!-- NMK-BADGES-END -->
 
 This plugin adds support for Github features in an **`nmk`** project:
@@ -29,7 +30,7 @@ refs:
 
 ## Documentation
 
-This plugin documentation is available [here](https://github.com/dynod/nmk/wiki/nmk-github-plugin)
+This plugin documentation is available [here](https://nmk-github.readthedocs.io/)
 
 ## Issues
 
