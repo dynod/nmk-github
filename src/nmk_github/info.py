@@ -4,7 +4,6 @@ Miscellaneous project information resolvers
 
 import re
 import urllib.parse
-from typing import Tuple
 
 from nmk.model.resolver import NmkStrConfigResolver
 from nmk.utils import run_with_logs
@@ -14,7 +13,7 @@ _REMOTE_PATTERN = re.compile("origin[\\t ]+(?:(?:git@)|(?:https://))github.com[:
 
 # Abstract class with common URL parsing logic
 class _GithubRemoteParser(NmkStrConfigResolver):
-    def get_remote(self) -> Tuple[str, str]:
+    def get_remote(self) -> tuple[str, str]:
         cp = run_with_logs(["git", "remote", "-v"])
         for line in cp.stdout.split("\n"):
             m = _REMOTE_PATTERN.match(line)

@@ -2,8 +2,6 @@
 Github actions handling module
 """
 
-from typing import Dict, List
-
 from nmk.model.resolver import NmkListConfigResolver
 from nmk.utils import is_condition_set
 from nmk_base.common import TemplateBuilder
@@ -19,7 +17,7 @@ class ActionFileBuilder(TemplateBuilder):
     Builder used to handle github workflow generation
     """
 
-    def _filter_steps(self, steps: List[Dict[str, str]]) -> List[Dict[str, str]]:
+    def _filter_steps(self, steps: list[dict[str, str]]) -> list[dict[str, str]]:
         # Browse steps
         out = []
         for step in steps:
@@ -41,7 +39,7 @@ class ActionFileBuilder(TemplateBuilder):
 
         return out
 
-    def build(self, python_versions: List[str], command: str, images: List[str], build_steps: List[Dict[str, str]], publish_steps: List[Dict[str, str]]):
+    def build(self, python_versions: list[str], command: str, images: list[str], build_steps: list[dict[str, str]], publish_steps: list[dict[str, str]]):
         """
         Called by the **gh.actions** to generate the Github workflow file.
 
@@ -72,7 +70,7 @@ class PythonVersionsResolver(NmkListConfigResolver):
     Resolution logic for **githubDetectedPythonVersions**
     """
 
-    def get_value(self, name: str) -> List[str]:
+    def get_value(self, name: str) -> list[str]:
         """
         Resolves python version to be used in generated workflow file.
 
