@@ -6,7 +6,7 @@ refs:
     - pip://nmk-doc!plugin.yml
     - <workspace>/shared.yml
     - workspace:
-        local: ../../../../shared
+        local: ../../shared
         remote: github://dynod/workspace/main/shared
 
 # Python path for locally defined tasks
@@ -22,13 +22,10 @@ config:
         - nmk-base
         - Jinja2
 
-    # Extra setup data
-    pythonSetupItems:
-        metadata:
+    # Extra project data
+    pythonProjectFileItems:
+        project:
             description: Github plugin for nmk build system
-        options.package_data:
-                nmk_github: "*.yml"
-                nmk_github.templates: "*"
 
     # Github issues logged in nmk project
     githubIssuesRepo: nmk
