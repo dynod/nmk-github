@@ -84,6 +84,15 @@ List of operating systems (build images) for Github actions
 
 Command string to perform **`nmk`** build (+ tests) while running Github actions
 
+(githubPackageCommand)=
+### **`githubPackageCommand`** -- Package command for Github actions
+
+| Type | Default value |
+|-     |-
+| str  | "./buildenv.sh run nmk package"
+
+Command string to perform **`nmk`** packaging while running Github actions
+
 (githubBuildSteps)=
 ### **`githubBuildSteps`** -- Github build workflow steps contribution
 

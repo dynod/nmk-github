@@ -18,6 +18,9 @@ config:
     # Build command for github action
     githubCommand: ./buildenv.sh run nmk tests
 
+    # Package command for github action
+    githubPackageCommand: ./buildenv.sh run nmk package
+
     # Github user
     githubUser:
         __resolver__: nmk_github.info.GithubUserResolver
@@ -51,7 +54,6 @@ tasks:
         if: ${githubDetectedPythonVersions}
         params:
             python_versions: ${githubDetectedPythonVersions}
-            command: ${githubCommand}
             images: ${githubOSImages}
             build_steps: ${githubBuildSteps}
             publish_steps: ${githubPublishSteps}

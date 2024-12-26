@@ -22,7 +22,6 @@ The builder is invoked with the following parameters mapping:
 | Name | Value |
 |- |-
 | python_versions | **{ref}`${githubDetectedPythonVersions}<githubDetectedPythonVersions>`**
-| command | **{ref}`${githubCommand}<githubCommand>`**
 | images | **{ref}`${githubOSImages}<githubOSImages>`**
 | build_steps | **{ref}`${githubBuildSteps}<githubBuildSteps>`**
 | publish_steps | **{ref}`${githubPublishSteps}<githubPublishSteps>`**
@@ -34,9 +33,10 @@ The generated Github workflow implements the following steps:
 * On branch push:
     * parallelizes multiple jobs for all combinations of **{ref}`${githubDetectedPythonVersions}<githubDetectedPythonVersions>`** and **{ref}`${githubOSImages}<githubOSImages>`** values
     * launches **{ref}`${githubCommand}<githubCommand>`** build command
+    * launches **{ref}`${githubPackageCommand}<githubPackageCommand>`** packaging command
     * launches extra steps defined by **{ref}`${githubBuildSteps}<githubBuildSteps>`**
 
 * On tag push:
     * runs a single job on a default configuration (linux + python 3.8)
-    * launches **`./buildenv.sh run nmk build git.dirty`** build command
+    * launches **{ref}`${githubPackageCommand}<githubPackageCommand>`** packaging command
     * launches extra steps defined by **{ref}`${githubPublishSteps}<githubPublishSteps>`**

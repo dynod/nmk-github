@@ -39,12 +39,11 @@ class ActionFileBuilder(TemplateBuilder):
 
         return out
 
-    def build(self, python_versions: list[str], command: str, images: list[str], build_steps: list[dict[str, str]], publish_steps: list[dict[str, str]]):
+    def build(self, python_versions: list[str], images: list[str], build_steps: list[dict[str, str]], publish_steps: list[dict[str, str]]):
         """
         Called by the **gh.actions** to generate the Github workflow file.
 
         :param python_versions: List of used python versions
-        :param command: Build command for workflow
         :param images: List of used Github images
         :param build_steps: List of extra build steps to be generated
         :param publish_steps: List of extra publish steps to be generated
@@ -57,7 +56,6 @@ class ActionFileBuilder(TemplateBuilder):
             self.main_output,
             {
                 "pythonVersions": python_versions,
-                "command": command,
                 "images": images,
                 "buildExtraSteps": self._filter_steps(build_steps),
                 "publishExtraSteps": self._filter_steps(publish_steps),
