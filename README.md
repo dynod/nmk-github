@@ -2,7 +2,7 @@
 Github plugin for **`nmk`** build system
 
 <!-- NMK-BADGES-BEGIN -->
-[![License: MPL](https://img.shields.io/github/license/dynod/nmk-github?color=green)](https://github.com/dynod/nmk-github/blob/main/LICENSE)
+[![License: Mozilla Public License Version 2.0](https://img.shields.io/github/license/dynod/nmk-github)](https://github.com/dynod/nmk-github/blob/main/LICENSE)
 [![Checks](https://img.shields.io/github/actions/workflow/status/dynod/nmk-github/build.yml?branch=main&label=build%20%26%20u.t.)](https://github.com/dynod/nmk-github/actions?query=branch%3Amain)
 [![Issues](https://img.shields.io/github/issues-search/dynod/nmk?label=issues&query=is%3Aopen+is%3Aissue+label%3Aplugin%3Agithub)](https://github.com/dynod/nmk/issues?q=is%3Aopen+is%3Aissue+label%3Aplugin%3Agithub)
 [![Supported python versions](https://img.shields.io/badge/python-3.9%20--%203.12-blue)](https://www.python.org/)

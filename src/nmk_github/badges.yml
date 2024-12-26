@@ -1,7 +1,13 @@
 config:
-    
-    # License name configuration (default to Mozilla Public License)
-    githubLicense: MPL
+
+    # License file (relative path to project root)
+    githubLicenseFile: LICENSE
+
+    # License type (parsed from license file)
+    githubLicense:
+      __resolver__: nmk_github.info.GithubLicenseParser
+      params:
+        file: ${githubLicenseFile}
 
     # Issues hosting repo (default to current repo)
     githubIssuesRepo: ${githubRepo}
@@ -16,8 +22,8 @@ config:
     # Badges configuration
     badges:
       - alt: "License: ${githubLicense}"
-        img: https://img.shields.io/github/license/${githubUser}/${githubRepo}?color=green
-        url: https://github.com/${githubUser}/${githubRepo}/blob/main/LICENSE
+        img: https://img.shields.io/github/license/${githubUser}/${githubRepo}
+        url: https://github.com/${githubUser}/${githubRepo}/blob/main/${githubLicenseFile}
       - alt: Checks
         img: https://img.shields.io/github/actions/workflow/status/${githubUser}/${githubRepo}/build.yml?branch=main&label=build%20%26%20u.t.
         url: https://github.com/${githubUser}/${githubRepo}/actions?query=branch%3Amain
