@@ -4,7 +4,9 @@ Miscellaneous project information resolvers
 
 import re
 import urllib.parse
+from pathlib import Path
 
+from nmk.model.keys import NmkRootConfig
 from nmk.model.resolver import NmkStrConfigResolver
 from nmk.utils import run_with_logs
 
@@ -70,3 +72,25 @@ class GithubIssuesLabelResolver(NmkStrConfigResolver):
 
         # Check for optional label
         return "+" + urllib.parse.quote(f"label:{label}") if len(label) else ""
+
+
+class GithubLicenseParser(NmkStrConfigResolver):
+    """
+    License file parser
+    """
+
+    def get_value(self, name: str, file: str) -> str:
+        """
+        Parse license file to read first line
+
+        :param file: license file path
+        """
+
+        # Parse license file if exist
+        license_file = Path(self.model.config[NmkRootConfig.PROJECT_DIR].value) / file
+        if license_file.is_file():
+            with license_file.open() as f:
+                return f.readlines()[0].strip("\r\n")
+
+        # Unknown license
+        return "Unknown"

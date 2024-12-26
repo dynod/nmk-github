@@ -89,3 +89,17 @@ class TestGithubPlugin(NmkBaseTester):
 
             # __unless__ filtered step
             assert " name: Another filtered step" not in build_file
+
+    def test_unknown_license(self):
+        # By default: unknown license
+        self.nmk(self.prepare_project("ref_github.yml"), extra_args=["--print", "githubLicense"])
+        self.check_logs('Config dump: { "githubLicense": "Unknown" }')
+
+    def test_parsed_license(self):
+        # Dump a dummy license type
+        license_title = "some dummy license"
+        license_file = self.test_folder / "LICENSE"
+        with license_file.open("w") as f:
+            f.write(license_title)
+        self.nmk(self.prepare_project("ref_github.yml"), extra_args=["--print", "githubLicense"])
+        self.check_logs(f'Config dump: {{ "githubLicense": "{license_title}" }}')

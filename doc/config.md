@@ -128,14 +128,23 @@ Special keys for each object:
 
 Following items help to configure generated badges related to Github details.
 
+(githubLicenseFile)=
+### **`githubLicenseFile`** -- License file path
+
+| Type | Default value |
+|-     |-
+| str  | "LICENSE"
+
+Path to license file (relative to project directory)
+
 (githubLicense)=
 ### **`githubLicense`** -- License used by Github project
 
 | Type | Default value |
 |-     |-
-| str  | "MPL"
+| str  | Resolved by {py:class}`nmk_github.info.GithubLicenseParser`
 
-License name configuration (default to Mozilla Public License).
+License type (by default, parsed from **{ref}`${githubLicenseFile}<githubLicenseFile>`**).
 
 (githubIssuesRepo)=
 ### **`githubIssuesRepo`** -- Github repository hosting issues
