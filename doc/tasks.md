@@ -37,6 +37,6 @@ The generated Github workflow implements the following steps:
     * launches extra steps defined by **{ref}`${githubBuildSteps}<githubBuildSteps>`**
 
 * On tag push:
-    * runs a single job on a default configuration (linux + python 3.8)
+    * runs a single job on a default configuration (ubuntu latest + python minimum supported version)
     * launches **{ref}`${githubPackageCommand}<githubPackageCommand>`** packaging command
     * launches extra steps defined by **{ref}`${githubPublishSteps}<githubPublishSteps>`**
