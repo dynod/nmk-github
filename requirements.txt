@@ -6,19 +6,12 @@
 # Package dependencies from nmk project files
 #
 
-build
 Jinja2
-myst-parser
+nmk-badges
 nmk-base
+nmk-doc
+nmk-python
 nmk-vscode
-pytest-cov
-pytest-multilog
-pytest-xdist
-ruff
-setuptools
-sphinx
 sphinx-autoapi
-sphinx_rtd_theme
-wheel
 
 
