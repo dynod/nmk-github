@@ -16,7 +16,7 @@ _REMOTE_PATTERN = re.compile("origin[\\t ]+(?:(?:git@)|(?:https://))github.com[:
 # Abstract class with common URL parsing logic
 class _GithubRemoteParser(NmkStrConfigResolver):
     def get_remote(self) -> tuple[str, str]:
-        cp = run_with_logs(["git", "remote", "-v"])
+        cp = run_with_logs(["git", "remote", "-v"], cwd=self.model.config[NmkRootConfig.PROJECT_DIR].value)
         for line in cp.stdout.split("\n"):
             m = _REMOTE_PATTERN.match(line)
             if m is not None:
