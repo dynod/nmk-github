@@ -28,6 +28,7 @@ jobs:
               with:
                   fetch-depth: 0
                   fetch-tags: true
+                  submodules: true
 
             # Setup python
             - name: Set up Python ${{ matrix.version }}
@@ -86,6 +87,7 @@ jobs:
               with:
                   fetch-depth: 0
                   fetch-tags: true
+                  submodules: true
             - name: Set up Python
               uses: actions/setup-python@v6.1.0
               with:
