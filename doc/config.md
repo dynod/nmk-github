@@ -82,7 +82,7 @@ List of operating systems (build images) for Github actions
 |-     |-
 | str  | "./buildenv.sh run nmk tests"
 
-Command string to perform **`nmk`** build (+ tests) while running Github actions
+Command string to perform **`nmk`** build (+ tests) while running Github actions.
 
 (githubPackageCommand)=
 ### **`githubPackageCommand`** -- Package command for Github actions
@@ -91,7 +91,13 @@ Command string to perform **`nmk`** build (+ tests) while running Github actions
 |-     |-
 | str  | "./buildenv.sh run nmk package"
 
-Command string to perform **`nmk`** packaging while running Github actions
+Command string to perform **`nmk`** packaging while running Github actions.
+
+```{note}
+The packaging/publishing steps will be generated in the workflow file only if this command is not empty.
+
+*<span style="color:green">Behavior changed in version 1.1.0</span>*
+```
 
 (githubBuildSteps)=
 ### **`githubBuildSteps`** -- Github build workflow steps contribution
