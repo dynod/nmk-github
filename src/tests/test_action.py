@@ -72,8 +72,8 @@ class TestGithubPlugin(NmkBaseTester):
         assert self.build_file.is_file()
         with self.build_file.open() as f:
             build_file = f.read()
-            assert '- "3.9"' in build_file
-            assert '- "3.13"' in build_file
+            assert '- "3.10"' in build_file
+            assert '- "3.14"' in build_file
 
     def test_action_with_extra_steps(self):
         self.nmk(self.prepare_project("ref_github_extra_build.yml"), extra_args=["gh.actions"])
