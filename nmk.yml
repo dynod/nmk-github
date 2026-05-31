@@ -1,32 +1,40 @@
 refs:
-    - src/nmk_github/plugin.yml
-    - pip://nmk-badges!plugin.yml
-    - pip://nmk-python!plugin.yml
-    - pip://nmk-vscode!plugin.yml
-    - pip://nmk-doc!plugin.yml
-    - <workspace>/shared.yml
-    - workspace:
-        local: ../../shared
-        remote: github://dynod/workspace/main/shared
+  - src/nmk_github/plugin.yml
+  - pip://nmk-badges!plugin.yml
+  - pip://nmk-python!plugin.yml
+  - pip://nmk-vscode!plugin.yml
+  - pip://nmk-doc!plugin.yml
+  - <workspace>/shared.yml
+  - workspace:
+      local: ../../shared
+      remote: github://dynod/workspace/main/shared
 
 # Python path for locally defined tasks
 path:
-    - src
+  - src
 
 config:
-    # Python package
-    pythonPackage: nmk-github
-    
-    # Nmk dependencies
-    pythonPackageRequirements:
-        - nmk-base
-        - Jinja2
+  # Python package
+  pythonPackage: nmk-github
 
-    # Extra project data
-    pythonProjectFileItems:
-        project:
-            description: Github plugin for nmk build system
+  # Nmk dependencies
+  pythonPackageRequirements:
+    - nmk-base
+    - Jinja2
 
-    # Github issues logged in nmk project
-    githubIssuesRepo: nmk
-    githubIssuesLabel: "plugin:github"
+  # Extra project data
+  pythonProjectFileItems:
+    project:
+      description: Github plugin for nmk build system
+      entry-points:
+        buildenv_template: # buildenv >=2 template
+          nmk.github: nmk_github._buildenv.template:NmkGithubProjectTemplate
+    tool:
+      coverage:
+        run:
+          omit:
+            - src/nmk_github/_buildenv/template.py
+
+  # Github issues logged in nmk project
+  githubIssuesRepo: nmk
+  githubIssuesLabel: "plugin:github"
