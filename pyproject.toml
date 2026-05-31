@@ -34,7 +34,7 @@ Issues = "https://github.com/dynod/nmk/issues?q=is%3Aopen+is%3Aissue+label%3Aplu
 "nmk.github" = "nmk_github._buildenv.template:NmkGithubProjectTemplate"
 
 [dependency-groups]
-dev = ["nmk-badges", "nmk-doc", "nmk-python", "nmk-vscode", "sphinx-autoapi"]
+dev = ["buildenv>2a0", "nmk-badges", "nmk-doc", "nmk-python", "nmk-vscode", "sphinx-autoapi"]
 
 [tool.setuptools.packages.find]
 where = ["src"]

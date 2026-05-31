@@ -22,6 +22,10 @@ config:
     - nmk-base
     - Jinja2
 
+  # While buildenv 2 is not released
+  venvPkgDeps:
+    - buildenv>2a0
+
   # Extra project data
   pythonProjectFileItems:
     project:
