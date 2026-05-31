@@ -6,90 +6,117 @@ All of them are initiliazed with convenient default values, so that you don't ne
 
 ## Project information
 
+---
+
 (githubUser)=
+
 ### **`githubUser`** -- user name for this Github project
 
-| Type | Default value |
-|-     |-
-| str  | Resolved by {py:class}`nmk_github.info.GithubUserResolver`
+| Type | Default value                                              |
+| ---- | ---------------------------------------------------------- |
+| str  | Resolved by {py:class}`nmk_github.info.GithubUserResolver` |
 
 User name for this Github project, deduced from remote git URL.
 
+---
+
 (githubRepo)=
+
 ### **`githubRepo`** -- repository name for this Github project
 
-| Type | Default value |
-|-     |-
-| str  | Resolved by {py:class}`nmk_github.info.GithubRepoResolver`
+| Type | Default value                                              |
+| ---- | ---------------------------------------------------------- |
+| str  | Resolved by {py:class}`nmk_github.info.GithubRepoResolver` |
 
 Repository name for this Github project, deduced from remote git URL.
 
 ## Actions
 
+---
+
 (githubAction)=
+
 ### **`githubAction`** -- target Github workflow file
 
-| Type | Default value |
-|-     |-
-| str  | ${PROJECTDIR}/.github/workflows/build.yml
+| Type | Default value                             |
+| ---- | ----------------------------------------- |
+| str  | ${PROJECTDIR}/.github/workflows/build.yml |
 
 Target workflow file containing CI job definition in reaction to push operations to the remote Github repository. This file is the output of the **{ref}`gh.actions<actionsTask>`** task.
 
+---
+
 (githubActionTemplate)=
+
 ### **`githubActionTemplate`** -- workflow file template
 
-| Type | Default value |
-|-     |-
-| str  | ${BASEDIR}/templates/build.yml
+| Type | Default value                  |
+| ---- | ------------------------------ |
+| str  | ${BASEDIR}/templates/build.yml |
 
 Jinja template used to generate the **{ref}`${githubAction}<githubAction>`** workflow file.
 
+---
+
 (githubPythonVersions)=
+
 ### **`githubPythonVersions`** -- python versions for Github workflows manual configuration
 
-| Type | Default value |
-|-     |-
-| List[str]  | []
+| Type      | Default value |
+| --------- | ------------- |
+| List[str] | []            |
 
 List of python versions to be used in Github workflow (manual configuration).
 
+---
+
 (githubDetectedPythonVersions)=
+
 ### **`githubDetectedPythonVersions`** -- python versions for Github workflows detected configuration
 
-| Type | Default value |
-|-     |-
-| List[str]  | Resolved by {py:class}`nmk_github.action.PythonVersionsResolver`
+| Type      | Default value                                                    |
+| --------- | ---------------------------------------------------------------- |
+| List[str] | Resolved by {py:class}`nmk_github.action.PythonVersionsResolver` |
 
 List of python versions to be tested in Github actions. Returns:
 
-* **{ref}`${githubPythonVersions}<githubPythonVersions>`** if set
-* otherwise if **`nmk-python`** plugin is used, the supported python versions range will be returned instead
-* otherwise returns []
+- **{ref}`${githubPythonVersions}<githubPythonVersions>`** if set
+- otherwise if **`nmk-python`** plugin is used, the supported python versions range will be returned instead
+- otherwise returns []
+
+---
 
 (githubOSImages)=
+
 ### **`githubOSImages`** -- OS images for Github actions
 
-| Type | Default value |
-|-     |-
-| List[str]  | ["ubuntu-latest", "windows-latest"]
+| Type      | Default value                       |
+| --------- | ----------------------------------- |
+| List[str] | ["ubuntu-latest", "windows-latest"] |
 
 List of operating systems (build images) for Github actions
 
+---
+
 (githubCommand)=
+
 ### **`githubCommand`** -- Build command for Github actions
 
-| Type | Default value |
-|-     |-
-| str  | "./buildenv.sh run nmk tests"
+| Type | Default value                 |
+| ---- | ----------------------------- |
+| str  | "./buildenv.sh run nmk tests" |
 
 Command string to perform **`nmk`** build (+ tests) while running Github actions.
 
+---
+
 (githubPackageCommand)=
+
 ### **`githubPackageCommand`** -- Package command for Github actions
 
-| Type | Default value |
-|-     |-
-| str  | "./buildenv.sh run nmk package"
+| Type | Default value                   |
+| ---- | ------------------------------- |
+| str  | "./buildenv.sh run nmk package" |
 
 Command string to perform **`nmk`** packaging while running Github actions.
 
@@ -99,82 +126,104 @@ The packaging/publishing steps will be generated in the workflow file only if th
 *<span style="color:green">Behavior changed in version 1.1.0</span>*
 ```
 
+---
+
 (githubBuildSteps)=
+
 ### **`githubBuildSteps`** -- Github build workflow steps contribution
 
-| Type | Default value |
-|-     |-
-| List[Dict]  | []
+| Type       | Default value |
+| ---------- | ------------- |
+| List[Dict] | []            |
 
 A list of extra Github build workflow steps, to be executed after build command.
 
 Expected to be a list of objects, that will be serialized in generated **{ref}`${githubAction}<githubAction>`** file.
 
 Special keys for each object:
-* **`__if__`**: when set, generate this step if the provided condition is met
-* **`__unless__`**: when set, generate this step unless the provided condition is met
 
+- **`__if__`**: when set, generate this step if the provided condition is met
+- **`__unless__`**: when set, generate this step unless the provided condition is met
+
+---
 
 (githubPublishSteps)=
+
 ### **`githubPublishSteps`** -- Github publish workflow steps contribution
 
-| Type | Default value |
-|-     |-
-| List[Dict]  | []
+| Type       | Default value |
+| ---------- | ------------- |
+| List[Dict] | []            |
 
 A list of extra Github publish workflow steps, to be executed after build command.
 
 Expected to be a list of objects, that will be serialized in generated **{ref}`${githubAction}<githubAction>`** file.
 
 Special keys for each object:
-* **`__if__`**: when set, generate this step if the provided condition is met
-* **`__unless__`**: when set, generate this step unless the provided condition is met
+
+- **`__if__`**: when set, generate this step if the provided condition is met
+- **`__unless__`**: when set, generate this step unless the provided condition is met
 
 ## Badges
 
 Following items help to configure generated badges related to Github details.
 
+---
+
 (githubLicenseFile)=
+
 ### **`githubLicenseFile`** -- License file path
 
 | Type | Default value |
-|-     |-
-| str  | "LICENSE"
+| ---- | ------------- |
+| str  | "LICENSE"     |
 
 Path to license file (relative to project directory)
 
+---
+
 (githubLicense)=
+
 ### **`githubLicense`** -- License used by Github project
 
-| Type | Default value |
-|-     |-
-| str  | Resolved by {py:class}`nmk_github.info.GithubLicenseParser`
+| Type | Default value                                               |
+| ---- | ----------------------------------------------------------- |
+| str  | Resolved by {py:class}`nmk_github.info.GithubLicenseParser` |
 
 License type (by default, parsed from **{ref}`${githubLicenseFile}<githubLicenseFile>`**).
 
+---
+
 (githubIssuesRepo)=
+
 ### **`githubIssuesRepo`** -- Github repository hosting issues
 
-| Type | Default value |
-|-     |-
-| str  | **{ref}`${githubRepo}<githubRepo>`**
+| Type | Default value                        |
+| ---- | ------------------------------------ |
+| str  | **{ref}`${githubRepo}<githubRepo>`** |
 
 Github repository hosting issues for this project (default to current repository).
 
+---
+
 (githubIssuesLabel)=
+
 ### **`githubIssuesLabel`** -- Github issues query optional label
 
 | Type | Default value |
-|-     |-
-| str  | ""
+| ---- | ------------- |
+| str  | ""            |
 
 Optional label used when querying issues for this repository.
 
+---
+
 (githubIssuesLabelSuffix)=
+
 ### **`githubIssuesLabelSuffix`** -- Github issues query optional label
 
-| Type | Default value |
-|-     |-
-| str  | Resolved by {py:class}`nmk_github.info.GithubIssuesLabelResolver`
+| Type | Default value                                                     |
+| ---- | ----------------------------------------------------------------- |
+| str  | Resolved by {py:class}`nmk_github.info.GithubIssuesLabelResolver` |
 
 Query suffix for extra label provided by **{ref}`${githubIssuesLabel}<githubIssuesLabel>`**.

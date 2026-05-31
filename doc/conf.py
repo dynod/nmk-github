@@ -7,14 +7,14 @@
 
 # Project information
 project = "nmk-github"
-copyright = "2025, The dynod project"
+copyright = "2026, The dynod project"
 author = "The dynod project"
 
 # Extensions configuration
-extensions = ["autoapi.extension", "myst_parser", "sphinx_rtd_theme"]
+extensions = ["autoapi.extension", "myst_parser"]
 
 # HTML theme
-html_theme = "sphinx_rtd_theme"
+html_theme = "furo"
 
 # Extra configuration
 
