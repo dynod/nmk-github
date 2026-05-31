@@ -11,6 +11,7 @@ The fully detailed changelog is also available on [Github](https://github.com/dy
 ## Release 1.2.0
 
 - Update documentation theme
+- Add buildenv 2 template support
 
 ## Release 1.1.1
 

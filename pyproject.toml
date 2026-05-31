@@ -30,6 +30,9 @@ Homepage = "https://github.com/dynod/nmk-github"
 Repository = "https://github.com/dynod/nmk-github"
 Issues = "https://github.com/dynod/nmk/issues?q=is%3Aopen+is%3Aissue+label%3Aplugin%3Agithub"
 
+[project.entry-points.buildenv_template]
+"nmk.github" = "nmk_github._buildenv.template:NmkGithubProjectTemplate"
+
 [dependency-groups]
 dev = ["nmk-badges", "nmk-doc", "nmk-python", "nmk-vscode", "sphinx-autoapi"]
 
@@ -70,4 +73,4 @@ data_file = "out/.coverage"
 concurrency = ["thread"]
 disable_warnings = ["no-data-collected"]
 branch = true
-omit = ["src/tests/*"]
+omit = ["src/tests/*", "src/nmk_github/_buildenv/template.py"]
