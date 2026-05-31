@@ -7,12 +7,10 @@
         "editor.defaultFormatter": "charliermarsh.ruff",
         "editor.formatOnSave": true
     },
-    "python.defaultInterpreterPath": "venv/bin/python",
     "python.autoComplete.extraPaths": [
         "src"
     ],
     "cSpell.words": [
-        "isort",
         "noqa",
         "pycache",
         "pylint",
@@ -33,6 +31,9 @@
         "**/venv/**": true
     },
     "editor.formatOnSave": true,
+    "[yaml]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
     "task.allowAutomaticTasks": "on",
     "terminal.integrated.defaultProfile.windows": "Git Bash",
     "terminal.integrated.profiles.linux": {
@@ -57,6 +58,7 @@
             ]
         }
     },
+    "python.terminal.activateEnvironment": false,
     "cSpell.allowCompoundWords": true,
     "cSpell.enableFiletypes": [
         "yaml",
