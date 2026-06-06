@@ -1,8 +1,14 @@
+import os
 import subprocess
+import sys
 from dataclasses import dataclass
 from pathlib import Path
 
+import pytest
 from nmk.tests.tester import NmkBaseTester
+
+_MIN_PYTHON_VERSION = 10
+_MAX_PYTHON_VERSION = 14
 
 
 @dataclass
@@ -72,8 +78,8 @@ class TestGithubPlugin(NmkBaseTester):
         assert self.build_file.is_file()
         with self.build_file.open() as f:
             build_file = f.read()
-            assert '- "3.10"' in build_file
-            assert '- "3.14"' in build_file
+            assert f'- "3.{_MIN_PYTHON_VERSION}"' in build_file
+            assert f'- "3.{_MAX_PYTHON_VERSION}"' in build_file
 
     def test_action_with_extra_steps(self):
         self.nmk(self.prepare_project("ref_github_extra_build.yml"), extra_args=["gh.actions"])
@@ -109,3 +115,13 @@ class TestGithubPlugin(NmkBaseTester):
             f.write(license_title)
         self.nmk(self.prepare_project("ref_github.yml"), extra_args=["--print", "githubLicense"])
         self.check_logs(f'Config dump: {{ "githubLicense": "{license_title}" }}')
+
+    def test_ci_python_version(self):
+        # Test only on CI
+        if os.getenv("CI", "") == "":
+            pytest.skip("This test is only relevant on CI environments")
+
+        # Check current python version
+        ci_python_version = os.getenv("UV_PYTHON", "")
+        python_version = f"{sys.version_info.major}.{sys.version_info.minor}"
+        assert ci_python_version == python_version, f"CI Python version {ci_python_version} does not match test Python version {python_version}"

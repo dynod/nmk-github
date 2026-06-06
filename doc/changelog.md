@@ -12,6 +12,7 @@ The fully detailed changelog is also available on [Github](https://github.com/dy
 
 - Update documentation theme
 - Add buildenv 2 template support
+- Move to [astral-sh/setup-uv](https://github.com/astral-sh/setup-uv) action to handle python install in generated GitHub actions file
 
 ## Release 1.1.1
 

@@ -25,11 +25,17 @@ jobs:
                   fetch-tags: true
                   submodules: true
 
-            # Setup python
-            - name: Set up Python ${{ '{{' }} matrix.version {{ '}}' }}
-              uses: actions/setup-python@v6.1.0
+            # Setup python through uv
+            - name: Install uv
+              uses: astral-sh/setup-uv@v8.2.0
               with:
                   python-version: ${{ '{{' }} matrix.version {{ '}}' }}
+                  enable-cache: false
+            - name: Fix uv python path
+              shell: bash
+              run: echo "UV_PYTHON_BIN_DIR=$UV_PYTHON_INSTALL_DIR" >> $GITHUB_ENV
+            - name: Set up Python ${{ '{{' }} matrix.version {{ '}}' }}
+              run: uv python install ${{ '{{' }} matrix.version {{ '}}' }} --default
 
             # Trigger build and tests + archive output
             - name: Build and tests
@@ -80,10 +86,16 @@ jobs:
                   fetch-depth: 0
                   fetch-tags: true
                   submodules: true
-            - name: Set up Python
-              uses: actions/setup-python@v6.1.0
+            - name: Install uv
+              uses: astral-sh/setup-uv@v8.2.0
               with:
-                  python-version: "{{ githubDetectedPythonVersions[0] }}"
+                  python-version: {{ githubDetectedPythonVersions[0] }}
+                  enable-cache: false
+            - name: Fix uv python path
+              shell: bash
+              run: echo "UV_PYTHON_BIN_DIR=$UV_PYTHON_INSTALL_DIR" >> $GITHUB_ENV
+            - name: Set up Python
+              run: uv python install {{ githubDetectedPythonVersions[0] }} --default
             - name: Build
               run: {{ githubPackageCommand }}
 {% for extraStep in publishExtraSteps %}
