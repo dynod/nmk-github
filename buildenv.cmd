@@ -24,16 +24,14 @@ if %_BUILDENV_RC% NEQ 0 (
 set BUILDENV_VERSION=2
 
 :: Check for lock
+set _opts=
 if exist buildenv.lock (
     :: Locked requirements
-    set _opts=--frozen
-) else (
-    :: Always upgrade
-    set _opts=--upgrade
+    set _opts= --frozen
 )
 
 :: Delegate execution to buildenv command (through uv)
-call :run_cmd uv run %_opts% %BUILDENV_UV_ARGS% buildenv %*
+call :run_cmd uv run%_opts% %BUILDENV_UV_ARGS% buildenv %*
 set _BUILDENV_RC=%ERRORLEVEL%
 goto end
 
