@@ -22,10 +22,6 @@ config:
     - nmk-base
     - Jinja2
 
-  # While buildenv 2 is not released
-  venvPkgDeps:
-    - buildenv>2a0
-
   # Extra project data
   pythonProjectFileItems:
     project:
@@ -33,11 +29,6 @@ config:
       entry-points:
         buildenv_template: # buildenv >=2 template
           nmk.github: nmk_github._buildenv.template:NmkGithubProjectTemplate
-    tool:
-      coverage:
-        run:
-          omit:
-            - src/nmk_github/_buildenv/template.py
 
   # Github issues logged in nmk project
   githubIssuesRepo: nmk
