@@ -29,11 +29,6 @@ config:
       entry-points:
         buildenv_template: # buildenv >=2 template
           nmk.github: nmk_github._buildenv.template:NmkGithubProjectTemplate
-    tool:
-      coverage:
-        run:
-          omit:
-            - src/nmk_github/_buildenv/template.py
 
   # Github issues logged in nmk project
   githubIssuesRepo: nmk
