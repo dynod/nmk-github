@@ -1,9 +1,13 @@
+import pytest
 from buildenv.__main__ import buildenv
 from pytest_multilog import TestHelper
 
 
 class TestTemplate(TestHelper):
-    def test_template(self):
+    def test_template(self, monkeypatch: pytest.MonkeyPatch):
+        # Fake a "no CI" environment
+        monkeypatch.delenv("CI", raising=False)
+
         # Prepare a project with uvx backend
         assert (
             buildenv(
