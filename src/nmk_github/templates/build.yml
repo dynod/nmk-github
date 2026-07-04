@@ -89,7 +89,7 @@ jobs:
             - name: Install uv
               uses: astral-sh/setup-uv@v8.2.0
               with:
-                  python-version: {{ githubDetectedPythonVersions[0] }}
+                  python-version: "{{ githubDetectedPythonVersions[0] }}"
                   enable-cache: false
             - name: Fix uv python path
               shell: bash
